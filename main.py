@@ -1,6 +1,6 @@
 from tkinter import *
 import argparse
-from backup import BackupSystem
+from src.backup import BackupSystem
 
 
 def main():
@@ -8,13 +8,17 @@ def main():
     parser = argparse.ArgumentParser(description='Backup management')
 
     # Ajout d'un argument positionnel
-    parser.add_argument('-m', type=str, help='Move source to destination ')
-    parser.add_argument('-c', type=str, help='Copy source to destination ')
+    parser.add_argument('-m', const=True, nargs="?", default=False, help='Move source to destination ')
+    parser.add_argument('-c', const=True, nargs="?", default=False, help='Copy source to destination ')
     parser.add_argument('-s', type=str, help='Add source directory')
     parser.add_argument('-d', type=str, help='Add destination directory')
 
     # Analyser les arguments de la ligne de commande
     args = parser.parse_args()
+
+    if not any(vars(args).values()):
+        print("Please enter arguments or use '-h' for help")
+        return
 
     if args.m is None and args.c is None:
         raise ValueError('You must be identified if you want copy or move')
@@ -27,13 +31,13 @@ def main():
             move.set_name('MoveSystem')
             move.set_source(args.s)
             move.set_destination(args.d)
-            move.move_exec()
+            print(move.move_exec())
         elif args.c:
             copy = BackupSystem()
             copy.set_name('CopySystem')
             copy.set_source(args.s)
             copy.set_destination(args.d)
-            copy.copy_exec()
+            print(copy.copy_exec())
         else:
             raise ValueError('Something is missing!')
 

@@ -1,4 +1,5 @@
 # Backup system
+import os.path
 import shutil
 
 
@@ -62,8 +63,17 @@ Possible to backup folder or file
         if self.__source is not None:
             if self.__destination is not None:
                 try:
-                    shutil.copy2(self.__source, self.__destination)
-                    return "Backup copied to '%s' finish with success" % self.__destination
+                    if os.path.exists(self.__destination):
+                        user_input = input(
+                            "Destination already exists. Do you want to overwrite it? (yes/no): ").lower()
+                        if user_input == 'yes':
+                            shutil.copy2(self.__source, self.__destination)
+                            return "Backup copied to '%s' finished with success" % self.__destination
+                        else:
+                            return "Backup not copied. Destination not overwritten."
+                    else:
+                        shutil.copy2(self.__source, self.__destination)
+                        return "Backup copied to '%s' finish with success" % self.__destination
                 except shutil.Error as e:
                     print('Error: {}'.format(e))
             else:
@@ -76,8 +86,17 @@ Possible to backup folder or file
         if self.__source is not None:
             if self.__destination is not None:
                 try:
-                    shutil.move(self.__source, self.__destination)
-                    return "Folder or file move to '%s' finish with success" % self.__destination
+                    if os.path.exists(self.__destination):
+                        user_input = input(
+                            "Destination already exists. Do you want to overwrite it? (yes/no): ").lower()
+                        if user_input == 'yes':
+                            shutil.copy2(self.__source, self.__destination)
+                            return "Backup copied to '%s' finished with success" % self.__destination
+                        else:
+                            return "Backup not copied. Destination not overwritten."
+                    else:
+                        shutil.move(self.__source, self.__destination)
+                        return "Folder or file move to '%s' finish with success" % self.__destination
                 except shutil.Error as e:
                     print('Error: {}'.format(e))
             else:
