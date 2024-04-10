@@ -62,43 +62,52 @@ Possible to backup folder or file
     def copy_exec(self):
         if self.__source is not None:
             if self.__destination is not None:
-                try:
-                    if os.path.exists(self.__destination):
-                        user_input = input(
-                            "Destination already exists. Do you want to overwrite it? (yes/no): ").lower()
-                        if user_input == 'yes':
+                if os.path.abspath(self.__source) != os.path.abspath(self.__destination):
+                    try:
+                        source_path = os.path.join(self.__destination, os.path.basename(self.__source))
+                        if os.path.exists(source_path):
+                            user_input = input(
+                                "Destination already exists. Do you want to overwrite it? (yes/no): ").lower()
+                            if user_input == 'yes':
+                                shutil.copy2(self.__source, self.__destination)
+                                return "Backup copied to '%s' finished with success" % self.__destination
+                            else:
+                                return "Backup not copied. Destination not overwritten."
+                        else:
                             shutil.copy2(self.__source, self.__destination)
                             return "Backup copied to '%s' finished with success" % self.__destination
-                        else:
-                            return "Backup not copied. Destination not overwritten."
-                    else:
-                        shutil.copy2(self.__source, self.__destination)
-                        return "Backup copied to '%s' finish with success" % self.__destination
-                except shutil.Error as e:
-                    print('Error: {}'.format(e))
+                    except shutil.Error as e:
+                        print('Error: {}'.format(e))
+                else:
+                    raise ValueError("Source and destination are the same.")
             else:
                 raise ValueError("Destination is not set. Please set destination")
         else:
             raise ValueError("Source is not set. Please set source")
 
+
     # Execute move source to destination
     def move_exec(self):
         if self.__source is not None:
             if self.__destination is not None:
-                try:
-                    if os.path.exists(self.__destination):
-                        user_input = input(
-                            "Destination already exists. Do you want to overwrite it? (yes/no): ").lower()
-                        if user_input == 'yes':
-                            shutil.move(self.__source, self.__destination)
-                            return "Backup copied to '%s' finished with success" % self.__destination
+                if os.path.abspath(self.__source) != os.path.abspath(self.__destination):
+                    try:
+                        source_path = os.path.join(self.__destination, os.path.basename(self.__source))
+                        if os.path.exists(source_path):
+                            user_input = input(
+                                "Destination already exists. Do you want to overwrite it? (yes/no): ").lower()
+                            if user_input == 'yes':
+                                shutil.move(self.__source, self.__destination)
+                                return "Backup move to '%s' finished with success" % self.__destination
+                            else:
+                                return "Backup not copied. Destination not overwritten."
                         else:
-                            return "Backup not copied. Destination not overwritten."
-                    else:
-                        shutil.move(self.__source, self.__destination)
-                        return "Folder or file move to '%s' finish with success" % self.__destination
-                except shutil.Error as e:
-                    print('Error: {}'.format(e))
+                            shutil.move(self.__source, self.__destination)
+                            return "Backup move to '%s' finished with success" % self.__destination
+                    except shutil.Error as e:
+                        print('Error: {}'.format(e))
+                else:
+                    raise ValueError("Source and destination are the same.")
             else:
                 raise ValueError("Destination is not set. Please set destination")
         else:
