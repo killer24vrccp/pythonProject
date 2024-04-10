@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4893348c-e73e-4fe8-a770-c66553422f1b" name="Changes" comment="update backup.py mechanism and argparse command">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1712752649426</updated>
       <workItem from="1712752659269" duration="1001000" />
-      <workItem from="1712756720539" duration="12194000" />
+      <workItem from="1712756720539" duration="12836000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -91,7 +91,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712768376024</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update backup.py mechanism and argparse command">
+      <option name="closed" value="true" />
+      <created>1712770069912</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712770069912</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

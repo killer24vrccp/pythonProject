@@ -90,7 +90,7 @@ Possible to backup folder or file
                         user_input = input(
                             "Destination already exists. Do you want to overwrite it? (yes/no): ").lower()
                         if user_input == 'yes':
-                            shutil.copy2(self.__source, self.__destination)
+                            shutil.move(self.__source, self.__destination)
                             return "Backup copied to '%s' finished with success" % self.__destination
                         else:
                             return "Backup not copied. Destination not overwritten."
