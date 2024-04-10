@@ -1,30 +1,15 @@
-from tkinter import *
+import sys
 import argparse
+
 from src.backup import BackupSystem
+from src.gui_manager import PageGUI, QApplication
 
-def desktop_app():
-    root = Tk()
-    root.title("Gestion des sauvegardes")
+def start_desktop():
+    app = QApplication(sys.argv)
+    widget = PageGUI()
+    widget.show()
+    sys.exit(app.exec())
 
-    # Création des champs de saisie et des boutons
-    Label(root, text="Source:").grid(row=0, column=0)
-    source_entry = Entry(root)
-    source_entry.grid(row=0, column=1)
-
-    Label(root, text="Destination:").grid(row=1, column=0)
-    destination_entry = Entry(root)
-    destination_entry.grid(row=1, column=1)
-
-    transfer_button = Button(root, text="Transférer")
-    transfer_button.grid(row=2, column=0)
-
-    copy_button = Button(root, text="Copier")
-    copy_button.grid(row=2, column=1)
-
-    status_label = Label(root, text="")
-    status_label.grid(row=4, columnspan=2)
-
-    root.mainloop()
 
 def main():
     # Définition du parser
@@ -41,7 +26,7 @@ def main():
     args = parser.parse_args()
 
     if not any(vars(args).values()):
-        desktop_app()
+        start_desktop()
         return
 
     if args.m is None and args.c is None:
@@ -63,7 +48,7 @@ def main():
             copy.set_destination(args.d)
             print(copy.copy_exec())
         elif args.gui:
-            desktop_app()
+            start_desktop()
         else:
             raise ValueError('Something is missing!')
 
