@@ -27,12 +27,16 @@ class Ui_MainWindow(object):
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"#centralwidget{\n"
-"	background-color: rgb(175, 175, 175);\n"
+"	background-color: rgb(0, 0, 0);\n"
 "}\n"
 "\n"
 "#frame_5{\n"
 "	background-color: rgb(255, 255, 255);\n"
 "	border-radius: 20px;\n"
+"}\n"
+"\n"
+"#frame_3{\n"
+"	background-color: rgb(209, 209, 209);\n"
 "}")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
